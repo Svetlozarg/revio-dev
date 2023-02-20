@@ -41,9 +41,9 @@ export default function Settings() {
   return (
     <Box
       sx={{
+        bgcolor: colors.primary[400],
         height: '100%',
         flexGrow: 1,
-        bgcolor: colors.primary[400],
         border: '1px solid #000',
         borderColor: 'divider',
         display: 'flex',

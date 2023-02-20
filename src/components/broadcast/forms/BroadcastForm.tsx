@@ -18,6 +18,11 @@ import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { tokens, useMode } from '@/theme/theme';
+import { useDispatch } from 'react-redux';
+import {
+  addTableData,
+  updateTableData,
+} from '@/store/slices/broadcast/broadcastSlice';
 
 interface Props {
   handleClose: any;
@@ -62,10 +67,23 @@ const templateData: Array<TemplateData> = [
   { text: 'Template 2', itemValue: 'template2', disabled: false },
 ];
 
+interface FormData {
+  channel: string;
+  name: string;
+  targetAudience: string;
+  start: string;
+  date: Dayjs | null;
+  template: string;
+  lastEdit: string;
+  status: string;
+  type: string;
+}
+
 export default function BroadcastForm(props: Props) {
   const { handleClose } = props;
   const [theme, colorMode] = useMode();
   const colors = tokens(theme.palette.mode);
+  const dispatch = useDispatch();
   const [channel, setChannel] = useState<string>('');
   let broadcastName: MutableRefObject<any> = useRef(null);
   const [audience, setAudience] = useState<string>('');
@@ -98,38 +116,19 @@ export default function BroadcastForm(props: Props) {
       '.' +
       today.getFullYear();
 
-    const formData: {
-      channel: string;
-      broadCastName: string;
-      targetAudience: string;
-      start: string;
-      date: Dayjs | null;
-      template: string;
-      lastEdit: string;
-      status: string;
-      type: string;
-    } = {
+    const formData: FormData = {
+      type: 'Broadcast',
+      name: broadcastName.current.value,
       channel: channel,
-      broadCastName: broadcastName.current.value,
+      lastEdit: lastEdit,
+      status: 'Draft',
       targetAudience: audience,
       start: start,
       date: date,
       template: template,
-      lastEdit: lastEdit,
-      status: 'Draft',
-      type: 'Broadcast',
     };
 
-    if (localStorage.getItem('broadcast') === null) {
-      const broadcast: Array<Object> = [formData];
-      localStorage.setItem('broadcast', JSON.stringify(broadcast));
-    } else {
-      const broadcast: Array<Object> = JSON.parse(
-        localStorage.getItem('broadcast') as string
-      );
-      broadcast.push(formData);
-      localStorage.setItem('broadcast', JSON.stringify(broadcast));
-    }
+    dispatch(addTableData(formData));
 
     handleClose();
   };

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -8,6 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { tokens, useMode } from '@/theme/theme';
 import shopifyIcon from '@/assets/shopify-icon.svg';
 import Image from 'next/image';
+import Button from '../global/Button';
 
 interface Props {
   user: any;
@@ -125,19 +126,7 @@ export const Drawer: React.FC<Props> = ({ user }) => {
             margin: '.2rem 0',
           }}
         >
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '5px 20px',
-              borderRadius: '10px',
-              textTransform: 'none',
-            }}
-          >
-            Add Tag
-          </Button>
+          <Button text='Add Tag' padding='5px 20px' />
           <Box
             sx={{
               width: '180px',
@@ -162,19 +151,7 @@ export const Drawer: React.FC<Props> = ({ user }) => {
             alignItems: 'center',
           }}
         >
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '5px 20px',
-              borderRadius: '10px',
-              textTransform: 'none',
-            }}
-          >
-            Create Draft Order
-          </Button>
+          <Button text='Create Draft Order' padding='5px 20px' />
 
           <Image
             src={shopifyIcon}

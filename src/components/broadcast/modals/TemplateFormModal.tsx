@@ -103,6 +103,7 @@ export default function TemplateFormModal(props: Props) {
               borderRadius: '10px',
               textTransform: 'none',
             }}
+            disabled
           >
             Send for Review
           </Button>

@@ -29,30 +29,18 @@ body,
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #e0e0e0;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #283858;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #040509;
 }
-
-/* .login-section {
-  background-image: url("./assets//login.jpg");
-}
-
-.dialog-box-dark {
-  background-image: url("./assets/WA-dark.JPG") !important;
-}
-
-.dialog-box-light {
-  background-image: url("./assets/WA-light.JPG") !important;
-} */
 
 .pro-menu {
   padding: 0 !important;
@@ -60,10 +48,6 @@ body,
 
 .pro-menu ul {
   height: 100vh !important;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center; */
 }
 
 .dialog-box-dark {

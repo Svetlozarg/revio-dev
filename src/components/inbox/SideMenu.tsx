@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { makeStyles } from '@mui/styles';
 import { Tabs, Tab, Box, Typography } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
@@ -16,7 +15,6 @@ import viberIcon from '@/assets/viber-icon.svg';
 export default function SideMenu() {
   const [theme, colorMode] = useMode();
   const colors = tokens(theme.palette.mode);
-  const classes = useStyles();
   const [chatCategorie, setChatCategorie] = useState<number>(1);
 
   const handlechatCategorie = (event: any, newValue: any) => {
@@ -124,10 +122,21 @@ export default function SideMenu() {
   ];
 
   return (
-    <Box className={classes.root}>
+    <Box
+      sx={{
+        maxWidth: '220px !important',
+        height: '100%',
+        borderRight: '1px solid #000',
+        borderColor: 'divider',
+        borderRadius: '10px',
+        padding: '0 1rem',
+      }}
+    >
       <Box>
         {/* Conversation */}
-        <Typography className={classes.text}>Conversations</Typography>
+        <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
+          Conversations
+        </Typography>
 
         {/* Conversations Tabs */}
         <Tabs
@@ -201,7 +210,9 @@ export default function SideMenu() {
         </Tabs>
 
         {/* Channels */}
-        <Typography className={classes.text}>Channels</Typography>
+        <Typography sx={{ fontSize: '1.3rem', padding: '1rem 0' }}>
+          Channels
+        </Typography>
 
         {/* Channel Tabs */}
         <Tabs
@@ -216,8 +227,18 @@ export default function SideMenu() {
                 key={i + 4}
                 value={i + 4}
                 label={
-                  <Link href={link} className={classes.link}>
-                    <Box className={classes.tabMenu}>
+                  <Link
+                    href={link}
+                    style={{ textDecoration: 'none', width: '100%' }}
+                  >
+                    <Box
+                      sx={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}
+                    >
                       <Box
                         sx={{
                           display: 'flex',
@@ -267,28 +288,3 @@ export default function SideMenu() {
     </Box>
   );
 }
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: '220px !important',
-    height: '100%',
-    borderRight: '1px solid #000',
-    borderColor: 'divider',
-    borderRadius: '10px',
-    padding: '0 1rem',
-  },
-  tabMenu: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: '1.3rem',
-    padding: '1rem 0',
-  },
-  link: {
-    textDecoration: 'none',
-    width: '100%',
-  },
-});

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   FormControl,
   IconButton,
   Select,
@@ -12,6 +11,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { tokens, useMode } from '@/theme/theme';
 import { useState } from 'react';
+import Button from '@/components/global/Button';
 
 interface Props {
   user: any;
@@ -97,19 +97,7 @@ export default function ChatHeader(props: Props) {
           </FormControl>
         </Box>
 
-        <Button
-          sx={{
-            backgroundColor: colors.blueAccent[700],
-            color: colors.grey[100],
-            fontSize: '14px',
-            fontWeight: 'bold',
-            padding: '5px 20px',
-            borderRadius: '10px',
-            textTransform: 'none',
-          }}
-        >
-          Close
-        </Button>
+        <Button text='Close' padding='5px 20px' />
       </Box>
     </Stack>
   );

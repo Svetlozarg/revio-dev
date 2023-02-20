@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { Box, Button, IconButton, Typography, useTheme } from '@mui/material';
+import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '@/theme/theme';
 import HomeIcon from '@mui/icons-material/Home';
@@ -9,39 +10,13 @@ import EmailIcon from '@mui/icons-material/Email';
 import SettingsIcon from '@mui/icons-material/Settings';
 import logo from '@/assets/revio_logo.png';
 import logoLight from '@/assets/revio_logo-light.png';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SendIcon from '@mui/icons-material/Send';
 import PersonIcon from '@mui/icons-material/Person';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import StarIcon from '@mui/icons-material/Star';
-import Link from 'next/link';
 import Image from 'next/image';
-
-interface Props {
-  title: String;
-  to: any;
-  icon: any;
-  selected: any;
-  setSelected: any;
-}
-
-const Item: React.FC<Props> = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      <Typography sx={{ fontSize: '1.2rem' }}>{title}</Typography>
-      <Link href={to} />
-    </MenuItem>
-  );
-};
+import UserBox from './UserBox';
+import MenuLink from './MenuLink';
 
 interface MenuData {
   title: string;
@@ -63,7 +38,20 @@ export const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>('');
+  const router = useRouter();
+  const [path, setPath] = useState<string>(router.asPath);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      setPath(url);
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <Box
@@ -120,50 +108,18 @@ export const Sidebar = () => {
           </MenuItem>
 
           {/* User Box */}
-          {!isCollapsed && (
-            <Box mb='25px'>
-              <Box display='flex' justifyContent='center' alignItems='center'>
-                <AccountCircleIcon style={{ fontSize: '6rem' }} />
-              </Box>
-              <Box textAlign='center'>
-                <Typography
-                  variant='h2'
-                  color={colors.grey[100]}
-                  fontWeight='bold'
-                  sx={{ m: '10px 0 0 0', fontSize: '1.5rem' }}
-                >
-                  revio-demo
-                </Typography>
-                <Typography variant='h5' color={colors.greenAccent[500]}>
-                  revio-demo@revio.com
-                </Typography>
-                <Button
-                  sx={{
-                    backgroundColor: colors.blueAccent[700],
-                    color: colors.grey[100],
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    padding: '5px 20px',
-                    marginTop: '10px',
-                  }}
-                >
-                  Logout
-                </Button>
-              </Box>
-            </Box>
-          )}
+          {!isCollapsed && <UserBox />}
 
           {/* Menu Items */}
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             {menuData.map((item, i) => {
               return (
-                <Item
+                <MenuLink
+                  active={path === item.to ? true : false}
                   key={i}
                   title={item.title}
                   to={item.to}
                   icon={item.icon}
-                  selected={selected}
-                  setSelected={setSelected}
                 />
               );
             })}
