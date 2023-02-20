@@ -7,6 +7,9 @@ const WAConnectButton = () => {
 
     console.log('client ID: ' + callbackObject.client);
     console.log('channel IDs: ' + callbackObject.channels);
+
+    localStorage.setItem('clientID', callbackObject.client);
+    localStorage.setItem('channel IDs', callbackObject.channels);
   };
 
   return <ConnectButton partnerId={'ZN65H1PA'} callback={handleCallback} />;
