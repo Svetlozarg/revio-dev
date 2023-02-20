@@ -2,7 +2,6 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode, tokens } from '@/theme/theme';
 import { Sidebar } from '@/components/navigation/Sidebar';
 import PersonIcon from '@mui/icons-material/Person';
-import ContactsTable from '@/components/contacts/ContactsTable';
 import { Header } from '@/components/global/Header';
 import Contacts from '@/container/Contacts';
 

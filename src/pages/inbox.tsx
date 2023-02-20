@@ -70,9 +70,7 @@ export default function Inbox() {
                           id='outlined-adornment-weight'
                           aria-describedby='outlined-weight-helper-text'
                           sx={{ height: '40px' }}
-                          endAdornment={
-                            <SearchIcon position='end'></SearchIcon>
-                          }
+                          endAdornment={<SearchIcon />}
                         />
                       </FormControl>
                     </Box>
