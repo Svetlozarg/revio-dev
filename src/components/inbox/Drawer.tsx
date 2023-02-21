@@ -9,6 +9,7 @@ import { tokens, useMode } from '@/theme/theme';
 import shopifyIcon from '@/assets/shopify-icon.svg';
 import Image from 'next/image';
 import Button from '../global/Button';
+import DraftOrderModal from './modals/DraftOrderModal';
 
 interface Props {
   user: any;
@@ -151,7 +152,7 @@ export const Drawer: React.FC<Props> = ({ user }) => {
             alignItems: 'center',
           }}
         >
-          <Button text='Create Draft Order' padding='5px 20px' />
+          <DraftOrderModal/>
 
           <Image
             src={shopifyIcon}
