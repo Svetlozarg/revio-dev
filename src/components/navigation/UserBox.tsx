@@ -2,8 +2,10 @@ import { tokens } from '@/theme/theme';
 import { Box, Typography, useTheme } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '../global/Button';
+import { signOut, useSession } from 'next-auth/react';
 
 export default function UserBox() {
+  const { data: session } = useSession();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -19,12 +21,12 @@ export default function UserBox() {
           fontWeight='bold'
           sx={{ m: '10px 0 0 0', fontSize: '1.5rem' }}
         >
-          revio-demo
+          {session?.user?.user?.name}
         </Typography>
         <Typography variant='h5' color={colors.greenAccent[500]} mb={1}>
-          revio-demo@revio.com
+          {session?.user?.user?.email}
         </Typography>
-        <Button text='Logout' padding='5px 20px' />
+        <Button text='Logout' padding='5px 20px' onClick={() => signOut()} />
       </Box>
     </Box>
   );

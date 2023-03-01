@@ -14,6 +14,11 @@ import SubjectIcon from '@mui/icons-material/Subject';
 import ImageIcon from '@mui/icons-material/Image';
 import SmartDisplayIcon from '@mui/icons-material/SmartDisplay';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import { useDispatch } from 'react-redux';
+import {
+  addTableData,
+  updateTableData,
+} from '@/store/slices/broadcast/broadcastSlice';
 
 interface Props {
   name: string;
@@ -59,10 +64,22 @@ const headerData: Array<HeaderData> = [
   { text: 'File', icon: <AttachFileIcon sx={{ fontSize: '2rem' }} /> },
 ];
 
+interface FormData {
+  type: string;
+  name: string;
+  channel: string;
+  lastEdit: string;
+  status: string;
+  category: string;
+  language: string;
+  message: string;
+}
+
 export default function TemplateForm(props: Props) {
   const { name, channel, onChangeMessage } = props;
   const [theme, colorMode] = useMode();
   const colors = tokens(theme.palette.mode);
+  const dispatch = useDispatch();
   const [category, setCategory] = useState<string>('');
   const [language, setLanguage] = useState<string>('');
   const message: MutableRefObject<any> = useRef('');
@@ -73,6 +90,29 @@ export default function TemplateForm(props: Props) {
 
   const handleLanguageChange = (event: any) => {
     setLanguage(event.target.value);
+  };
+
+  const handleSave = () => {
+    const today: Date = new Date();
+    const lastEdit: string =
+      (today.getMonth() + 1).toString().padStart(2, '0') +
+      '.' +
+      today.getDate().toString().padStart(2, '0') +
+      '.' +
+      today.getFullYear();
+
+    const formData: FormData = {
+      type: 'Template',
+      name: name,
+      channel: channel,
+      lastEdit: lastEdit,
+      status: 'Draft',
+      category: category,
+      language: language,
+      message: message.current.value,
+    };
+
+    dispatch(addTableData(formData));
   };
 
   return (

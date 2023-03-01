@@ -2,15 +2,21 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Dayjs } from 'dayjs';
 
 export interface BroadcastTableData {
-  channel: string;
+  // Required
+  type: string;
   name: string;
-  targetAudience: string;
-  start: string;
-  date: Dayjs | null;
-  template: string;
+  channel: string;
   lastEdit: string;
   status: string;
-  type: string;
+
+  // Optional
+  category?: string;
+  language?: string;
+  message?: string;
+  targetAudience?: string;
+  start?: string;
+  date?: Dayjs | null;
+  template?: string;
 }
 
 export interface BroadcastState {
