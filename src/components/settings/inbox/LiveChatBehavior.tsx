@@ -17,7 +17,7 @@ const classes = {
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     width: '100%',
-    padding: '4rem 10px'
+    padding: '4rem 10px',
   },
 
   text: {
@@ -75,7 +75,9 @@ export default function LiveChatBehavior() {
         </FormControl>
 
         <Typography variant='body1' sx={classes.text}>
-          Open a new chat in Live Chat with any message from a contact and mark it "Unassigned". This setting excludes automated conversations located in the "Closed" folder.
+          Open a new chat in Live Chat with any message from a contact and mark
+          it &quot;Unassigned&quot;. This setting excludes automated
+          conversations located in the &quot;Closed&quot; folder.
         </Typography>
       </Box>
 
@@ -98,7 +100,9 @@ export default function LiveChatBehavior() {
         </FormControl>
 
         <Typography variant='body1' sx={classes.text}>
-          When contact re-opens a closed conversation you can assign it to the same agent that previously worked on it. Rither way conversation will be moved to the Unassigned folder.
+          When contact re-opens a closed conversation you can assign it to the
+          same agent that previously worked on it. Rither way conversation will
+          be moved to the Unassigned folder.
         </Typography>
       </Box>
 
@@ -121,7 +125,8 @@ export default function LiveChatBehavior() {
         </FormControl>
 
         <Typography variant='body1' sx={classes.text}>
-          Disable this option, if you want live chat agents to have access only to new conversations and conversations that are assigned to them.
+          Disable this option, if you want live chat agents to have access only
+          to new conversations and conversations that are assigned to them.
         </Typography>
       </Box>
 
@@ -143,9 +148,7 @@ export default function LiveChatBehavior() {
           </FormGroup>
         </FormControl>
 
-        <Typography variant='body1' sx={classes.text}>
-        
-        </Typography>
+        <Typography variant='body1' sx={classes.text}></Typography>
       </Box>
     </Stack>
   );
