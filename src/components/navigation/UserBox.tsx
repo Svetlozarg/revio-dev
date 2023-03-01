@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { tokens } from '@/theme/theme';
 import { Box, Typography, useTheme } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

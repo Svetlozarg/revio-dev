@@ -4,7 +4,7 @@ import { useTheme, Button as MUIButton } from '@mui/material';
 interface Props {
   text: string;
   padding: string;
-  onClick: any;
+  onClick?: any;
 }
 
 export default function Button(props: Props) {
